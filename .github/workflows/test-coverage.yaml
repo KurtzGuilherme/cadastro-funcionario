@@ -20,7 +20,7 @@ jobs:
       run: dotnet restore ./src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.sln
       
     - name: Run tests with coverage
-      run:  dotnet test ./src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests/Gerenciamento.Funcionarios.Tests.csproj --collect:"XPlat Code Coverage" --settings coverlet.runsettings --logger trx
+      run: dotnet test src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests/Gerenciamento.Funcionarios.Tests.csproj --collect:"XPlat Code Coverage" --settings src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests/coverlet.runsettings --logger trx
       
     - name: Check coverage
       uses: irongut/CodeCoverageSummary@v1.3.0 
