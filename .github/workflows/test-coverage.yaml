@@ -21,8 +21,8 @@ jobs:
 
     - name: Verify runsettings exists
       run: |
-          ls -la src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests/
-          cat src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests/coverlet.runsettings
+        ls -la src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests/
+        cat src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests/coverlet.runsettings.xml
       
     - name: Run tests with coverage
       working-directory: src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests
