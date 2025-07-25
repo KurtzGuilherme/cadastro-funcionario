@@ -7,7 +7,6 @@ public static class ServicoExtensions
 {
     public static IServiceCollection AddServicos(this IServiceCollection services)
     {
-
         services.AddScoped<IEmpresaServico, EmpresaServico>();
 
         return services;

@@ -1,9 +1,10 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Gerenciamento.Funcionarios.Dominio.Entidades;
 public class Empresa
 {
-    [BsonId]
+    [BsonRepresentation(BsonType.String)]
     public Guid Id { get; set; }
     public string Nome { get; set; }
     public string CNPJ { get; set; }
@@ -16,5 +17,4 @@ public class Empresa
         CNPJ = cnpj;
         Enderecos = endereco;
     }
-
 }

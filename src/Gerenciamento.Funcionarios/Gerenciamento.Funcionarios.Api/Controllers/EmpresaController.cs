@@ -27,6 +27,9 @@ public class EmpresaController : Controller
     {
         var empresaResponse = await _empresaServico.FindAsync(Id);
 
+        if(empresaResponse == null)
+           return NoContent();
+
         return Ok(empresaResponse);
     }
 

@@ -1,4 +1,5 @@
-﻿using Gerenciamento.Funcionarios.Dominio.Interfaces;
+﻿using Gerenciamento.Funcionarios.Dominio.Entidades;
+using Gerenciamento.Funcionarios.Dominio.Interfaces;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using System.Linq.Expressions;
@@ -27,9 +28,11 @@ public class BaseRepositorio<TEntity> : IBaseRepositorio<TEntity> where TEntity 
         await _collection.InsertOneAsync(entity);
     }
 
-    public async Task DeleteAsync(Expression<Func<TEntity, bool>> filterExpression)
+    public async Task DeleteByIdAsync(Guid id)
     {
-        await _collection.DeleteOneAsync(filterExpression);
+        var filter = Builders<TEntity>.Filter.Eq("_id", id);
+            
+        await _collection.DeleteOneAsync(filter);
     }
 
     public async Task ReplaceOneAsync(Expression<Func<TEntity, bool>> filterExpression, TEntity entity)

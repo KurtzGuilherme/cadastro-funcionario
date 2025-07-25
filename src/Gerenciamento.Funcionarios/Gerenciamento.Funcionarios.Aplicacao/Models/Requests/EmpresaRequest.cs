@@ -1,4 +1,6 @@
-﻿namespace Gerenciamento.Funcionarios.Aplicacao.Models.Requests;
+﻿using Gerenciamento.Funcionarios.Dominio.Entidades;
+
+namespace Gerenciamento.Funcionarios.Aplicacao.Models.Requests;
 public class EmpresaRequest
 {
     public Guid Id { get; set; }
@@ -12,5 +14,11 @@ public class EmpresaRequest
         Nome = nome;
         CNPJ = cnpj;
         Enderecos = enderecos;
+    }
+
+    public EmpresaRequest(string nome, string cnpj, IEnumerable<EnderecoModel> enderecos)
+        : this(Guid.NewGuid(), nome, cnpj, enderecos)
+    {
+            
     }
 }
