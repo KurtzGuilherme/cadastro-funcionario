@@ -2,7 +2,7 @@ name: Test and Coverage
 
 on:
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
 
 jobs:
   test:
@@ -17,7 +17,7 @@ jobs:
         dotnet-version: '8.0.x'
         
     - name: Restore dependencies
-      run: dotnet restore ./src/Gerenciamento.Funcionarios.sln
+      run: dotnet restore ./Gerenciamento.Funcionarios.sln
       
     - name: Run tests with coverage
       run: |
