@@ -37,9 +37,6 @@ public class Funcionario
     public Endereco Endereco { get; private set; }
 
     [BsonIgnore]
-    public virtual Empresa Empresa { get; private set; }
-
-    [BsonIgnore]
     public int Idade => DateTime.Today.Year - DataNascimento.Year -
                           (DateTime.Today.DayOfYear < DataNascimento.DayOfYear ? 1 : 0);
 
