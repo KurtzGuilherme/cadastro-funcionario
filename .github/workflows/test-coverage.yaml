@@ -35,23 +35,23 @@ jobs:
       run: |
         COVERAGE_PATH=$(find . -path '*/coverage/coverage.cobertura.xml' | head -1)
         echo "Coverage file path: $COVERAGE_PATH"
-        echo "::set-output name=path::$COVERAGE_PATH"
+        echo "path=$COVERAGE_PATH" >> $GITHUB_OUTPUT
 
     - name: Check coverage
-      uses: irongut/CodeCoverageSummary@v1.3.0
+      uses: irongut/CodeCoverageSummary@v1.4.1
       with:
         filename: '${{ steps.coverage.outputs.path }}'
         badge: true
         fail_below_min: false
         format: markdown
-        thresholds: '1 80'  # 1% mínimo, 80% desejado
+        thresholds: '1 80'
         hide_branch_rate: false
         hide_complexity: false
         indicators: true
         output: both
 
     - name: Upload coverage report
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: coverage-report
