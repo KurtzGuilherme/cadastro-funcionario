@@ -22,11 +22,12 @@ jobs:
     - name: Verify runsettings exists
       run: |
         ls -la src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests/
-        cat src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests/coverlet.runsettings.xml
+        test -f src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests/coverlet.runsettings.xml || exit 1
       
     - name: Run tests with coverage
       working-directory: src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests
-      run: dotnet test --collect:"XPlat Code Coverage" --settings coverlet.runsettings.xml --logger trx
+      run: |
+        dotnet test --collect:"XPlat Code Coverage" --settings ${{ github.workspace }}/src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests/coverlet.runsettings.xml --logger trx
 
     - name: Check coverage
       uses: irongut/CodeCoverageSummary@v1.3.0 

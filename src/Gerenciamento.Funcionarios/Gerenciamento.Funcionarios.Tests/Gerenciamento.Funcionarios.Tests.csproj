@@ -15,6 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Bogus" Version="35.6.3" />
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="coverlet.msbuild" Version="6.0.4">
       <PrivateAssets>all</PrivateAssets>
@@ -28,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="coverlet.runsettings.xml" CopyToOutputDirectory="PreserveNewest" />
+     <Content Include="Gerenciamento.Funcionarios.Tests.xml" CopyToOutputDirectory="PreserveNewest" />
     <ProjectReference Include="..\Gerenciamento.Funcionarios.Api\Gerenciamento.Funcionarios.Api.csproj" />
     <ProjectReference Include="..\Gerenciamento.Funcionarios.Aplicacao\Gerenciamento.Funcionarios.Aplicacao.csproj" />
     <ProjectReference Include="..\Gerenciamento.Funcionarios.Data\Gerenciamento.Funcionarios.Data.csproj" />

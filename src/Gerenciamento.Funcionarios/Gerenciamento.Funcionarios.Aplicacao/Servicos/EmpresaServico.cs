@@ -40,6 +40,9 @@ public class EmpresaServico : IEmpresaServico
     public async Task AddAsync(EmpresaRequest empresa)
     {
         var empresaDominio = empresa.ToEmpresa();
+
+        
+
         await _empresaRepositorio.AddOneAsync(empresaDominio);
     }
 
@@ -48,12 +51,12 @@ public class EmpresaServico : IEmpresaServico
         await _empresaRepositorio.DeleteByIdAsync(id);
     }
 
-    public async Task UpdateAsync(EmpresaRequest empresa)
+    public async Task UpdateAsync(EmpresaRequest request)
     {
         var filter = new FilterDefinitionBuilder<Empresa>()
-           .Where(x => x.Id == empresa.Id);
+           .Where(x => x.CNPJ == request.CNPJ);
 
-        var empresaDominio = empresa.ToEmpresa();
+        var empresaDominio = request.ToEmpresa();
 
         await _empresaRepositorio.ReplaceOneAsync(_ => filter.Inject(), empresaDominio);
     }   

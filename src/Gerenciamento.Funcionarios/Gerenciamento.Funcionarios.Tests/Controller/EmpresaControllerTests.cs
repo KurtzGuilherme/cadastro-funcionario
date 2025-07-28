@@ -1,9 +1,10 @@
-﻿using Gerenciamento.Funcionarios.Api.Controllers;
+﻿using Bogus;
+using Bogus.Extensions.Brazil;
+using Gerenciamento.Funcionarios.Api.Controllers;
 using Gerenciamento.Funcionarios.Aplicacao.Interfaces;
 using Gerenciamento.Funcionarios.Aplicacao.Models.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
 using Moq;
 using Moq.AutoMock;
 
@@ -11,18 +12,47 @@ namespace Gerenciamento.Funcionarios.Tests.Controller;
 public class EmpresaControllerTests
 {
     private readonly AutoMocker _autoMock;
-    private readonly Mock<IEmpresaServico> _mockEmpresaServico;
-
+    
     public EmpresaControllerTests()
     {
         _autoMock = new AutoMocker();
-        _mockEmpresaServico = new Mock<IEmpresaServico>();
     }
 
     [Fact]
-    public async Task GetEmpresa_EmpresaResponseIsNull_ShouldNotFound()
+    public async Task GetEmpresa_EmpresaResponseNotNull_ShouldReturnOk()
     {
-        //Arrange
+        // Arrange
+        var controller = CreateController();
+        var idFake = Guid.NewGuid();
+
+        var empresaResponse = new Faker<EmpresaResponse>()
+            .RuleFor(x => x.Id, f => Guid.NewGuid())
+            .RuleFor(x => x.Nome, f => f.Company.CompanyName())
+            .RuleFor(x => x.CNPJ, f => f.Company.Cnpj())
+            .Generate();
+
+        _autoMock.GetMock<IEmpresaServico>()
+            .Setup(m => m.FindAsync(It.IsAny<Guid>()))
+            .ReturnsAsync(empresaResponse)
+            .Verifiable();
+
+        // Act
+       var response = await controller.GetEmpresa(idFake);
+
+        // Assert
+        Assert.Multiple(() =>
+        {
+            var result = Assert.IsType<OkObjectResult>(response);
+            Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
+            var value = Assert.IsType<EmpresaResponse>(result.Value);
+            Assert.Equal(empresaResponse.Id, value.Id);
+        });
+    }
+
+    [Fact]
+    public async Task GetEmpresa_WhenNotFound_ShouldReturnNoContent()
+    {
+        // Arrange
         var controller = CreateController();
         var idFake = Guid.NewGuid();
 
@@ -30,18 +60,14 @@ public class EmpresaControllerTests
             .Setup(m => m.FindAsync(It.IsAny<Guid>()))
             .ReturnsAsync((EmpresaResponse)null);
 
-        //Act
+        // Act
         var response = await controller.GetEmpresa(idFake);
 
-        //Assert
-        Assert.Multiple(() =>
-        {
-            var result = Assert.IsType<NoContentResult>(response);
-            Assert.Equal(StatusCodes.Status204NoContent, result.StatusCode);
-        });
+        // Assert
+        Assert.IsType<NoContentResult>(response);
     }
 
 
     private EmpresaController CreateController()
-        => new EmpresaController(_mockEmpresaServico.Object);
+        => new EmpresaController(_autoMock.GetMock<IEmpresaServico>().Object);
 }

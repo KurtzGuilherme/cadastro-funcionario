@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat code coverage">
+        <Configuration>
+          <!-- Configurações do Coverlet -->
+          <Format>cobertura</Format>
+
+          <!-- Define cobertura mínima de 1% apenas para o projeto Api -->
+          <Threshold>1</Threshold>
+          <ThresholdType>line,branch,method</ThresholdType>
+
+          <!-- Inclui APENAS o projeto Api -->
+          <Include>[*Gerenciamento.Funcionarios.Api*]</Include>
+
+          <!-- Ignora os outros projetos -->
+          <ExcludeByFile>
+            **/Gerenciamento.Funcionarios.Dominio/*.cs,
+            **/Gerenciamento.Funcionarios.Data/*.cs,
+            **/Gerenciamento.Funcionarios.Aplicacao/*.cs,
+            **/Gerenciamento.Funcionarios.CrossCutting/*.cs
+          </ExcludeByFile>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>

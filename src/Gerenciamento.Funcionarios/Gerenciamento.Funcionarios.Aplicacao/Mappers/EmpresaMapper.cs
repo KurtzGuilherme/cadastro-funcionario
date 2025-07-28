@@ -12,7 +12,7 @@ public static class EmpresaMapper
             request.CNPJ, 
             request.Enderecos.Select(x => x.ToEndereco()));
 
-    public static EmpresaResponse ToEmpresaResponse(this Empresa dominio    )
+    public static EmpresaResponse ToEmpresaResponse(this Empresa dominio)
        => new EmpresaResponse(
            dominio.Id,
            dominio.Nome,
