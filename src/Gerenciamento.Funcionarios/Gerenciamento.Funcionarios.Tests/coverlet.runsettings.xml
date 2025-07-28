@@ -6,16 +6,19 @@
         <Configuration>
           <Format>cobertura</Format>
           <Include>
-			[Gerenciamento.Funcionarios.Api]*
-		  </Include>
+			      [Gerenciamento.Funcionarios.Api]*,			
+		      </Include>
           <Exclude>
-			[Gerenciamento.Funcionarios.Tests]*,
-			[Gerenciamento.Funcionarios.CrossCutting]*,
-			[*.Test]*,
+            [Gerenciamento.Funcionarios.Tests]*,
+            [Gerenciamento.Funcionarios.CrossCutting]*,
+            [Gerenciamento.Funcionarios.Aplicacao]*,
+            [Gerenciamento.Funcionarios.Dominio]*,
+            [Gerenciamento.Funcionarios.Data]*,
+            [*.Test]*,
             [xunit.*]*,
             [Moq]*,
             [Coverlet.*]*
-		  </Exclude>
+          </Exclude>
         </Configuration>
       </DataCollector>
     </DataCollectors>
