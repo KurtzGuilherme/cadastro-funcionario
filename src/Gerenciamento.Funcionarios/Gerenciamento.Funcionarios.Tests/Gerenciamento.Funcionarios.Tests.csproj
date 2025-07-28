@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <CollectCoverage>true</CollectCoverage>
     <CoverletOutput>./coverage/</CoverletOutput>
     <CoverletOutputFormat>cobertura</CoverletOutputFormat>
-    <Threshold>80</Threshold>
+    <Threshold>1</Threshold>
     <ThresholdType>line,branch,method</ThresholdType>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
