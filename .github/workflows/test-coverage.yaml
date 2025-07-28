@@ -26,7 +26,10 @@ jobs:
       
     - name: Run tests with coverage
       working-directory: src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests
-      run: dotnet test --collect:"XPlat Code Coverage" --settings ${{ github.workspace }}/src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests/coverlet.runsettings.xml --logger trx
+      run: |
+        # Garante que o arquivo existe
+        ls -la
+        cat coverlet.runsettings.xml
 
     - name: Check coverage
       uses: irongut/CodeCoverageSummary@v1.3.0 

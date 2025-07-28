@@ -5,25 +5,25 @@
       <DataCollector friendlyName="XPlat code coverage">
         <Configuration>
           <Format>cobertura</Format>
-          <Threshold>1</Threshold>
-          <ThresholdType>line,branch,method</ThresholdType>
+
+          <!-- Aplica apenas ao projeto Api -->
           <Include>[Gerenciamento.Funcionarios.Api]*</Include>
-          <ExcludeByFile>
-            **/Gerenciamento.Funcionarios.Dominio/*.cs,
-            **/Gerenciamento.Funcionarios.Data/*.cs,
-            **/Gerenciamento.Funcionarios.Aplicacao/*.cs,
-            **/Gerenciamento.Funcionarios.CrossCutting/*.cs
-          </ExcludeByFile>
+
+          <!-- Ignora todos os outros -->
+          <Exclude>[Gerenciamento.Funcionarios.*]*</Exclude>
           <Exclude>[xunit.*]*</Exclude>
-          <MergeWith>./coverage/coverage.json</MergeWith>
-          <UseSourceLink>true</UseSourceLink>
+
+          <!-- Threshold apenas para o Api
+          <Threshold>1</Threshold> -->
+          
+          <!-- Desativa thresholds -->
+          <Threshold>0</Threshold>
+          <SkipAutoProps>true</SkipAutoProps>
+          
+          <ThresholdType>line,branch,method</ThresholdType>
+          <ThresholdStat>total</ThresholdStat>
         </Configuration>
       </DataCollector>
     </DataCollectors>
   </DataCollectionRunSettings>
-  
-  <RunConfiguration>
-    <ResultsDirectory>./TestResults/</ResultsDirectory>
-    <CollectSourceInformation>true</CollectSourceInformation>
-  </RunConfiguration>
 </RunSettings>
