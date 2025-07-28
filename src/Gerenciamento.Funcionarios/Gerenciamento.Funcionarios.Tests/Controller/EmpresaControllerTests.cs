@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Moq.AutoMock;
+using System;
+using System.Threading.Tasks;
 
 namespace Gerenciamento.Funcionarios.Tests.Controller;
 public class EmpresaControllerTests

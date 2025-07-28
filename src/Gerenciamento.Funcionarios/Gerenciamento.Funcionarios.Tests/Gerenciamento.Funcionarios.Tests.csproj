@@ -2,21 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
 
     <!-- Configurações do Coverlet -->
     <CollectCoverage>true</CollectCoverage>
     <CoverletOutput>./coverage/</CoverletOutput>
-    <CoverletOutputFormat>cobertura</CoverletOutputFormat>
-    <Threshold>1</Threshold>
-    <ThresholdType>line,branch,method</ThresholdType>
-    <ThresholdStat>minimum</ThresholdStat>
-    <!-- Especifica o arquivo de configuração -->
+    <CoverletOutputFormat>cobertura,json</CoverletOutputFormat>
+    <CoverletMergeWith>./coverage/coverage.json</CoverletMergeWith>
+
+    <!-- Referência ao arquivo de configuração -->
     <CoverletRunSettings>coverlet.runsettings.xml</CoverletRunSettings>
-    <!-- Desativa a verificação de cobertura -->
-    <CoverletSkipValidation>true</CoverletSkipValidation>
-    <!-- Opcional: desativa a coleta de cobertura completamente -->
-    <CollectCoverage>false</CollectCoverage>
   </PropertyGroup>
 
   <ItemGroup>
