@@ -2,16 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+
+    <!-- Configurações do Coverlet -->
+    <CoverletRunSettings>$(MSBuildProjectDirectory)/coverlet.runsettings.xml</CoverletRunSettings>
     <CollectCoverage>true</CollectCoverage>
     <CoverletOutput>./coverage/</CoverletOutput>
     <CoverletOutputFormat>cobertura</CoverletOutputFormat>
     <Threshold>1</Threshold>
     <ThresholdType>line,branch,method</ThresholdType>
-    <CoverletSkipValidation>true</CoverletSkipValidation>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <IsPackable>false</IsPackable>
-    <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-     <Content Include="Gerenciamento.Funcionarios.Tests.xml" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="coverlet.runsettings.xml" CopyToOutputDirectory="PreserveNewest" />
     <ProjectReference Include="..\Gerenciamento.Funcionarios.Api\Gerenciamento.Funcionarios.Api.csproj" />
     <ProjectReference Include="..\Gerenciamento.Funcionarios.Aplicacao\Gerenciamento.Funcionarios.Aplicacao.csproj" />
     <ProjectReference Include="..\Gerenciamento.Funcionarios.Data\Gerenciamento.Funcionarios.Data.csproj" />
