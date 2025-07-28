@@ -1,13 +1,11 @@
 name: Test and Coverage
 
-on:
-  pull_request:
-    branches: [ main ]
+on: [push, pull_request]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    
     steps:
     - uses: actions/checkout@v4
     
@@ -16,38 +14,7 @@ jobs:
       with:
         dotnet-version: '8.0.x'
         
-    - name: Restore dependencies
-      run: dotnet restore ./src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.sln
-
-    - name: Verify runsettings
+    - name: Run tests
       working-directory: src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests
       run: |
-        ls -la
-        test -f coverlet.runsettings.xml || exit 1
-        cat coverlet.runsettings.xml
-      
-    - name: Run tests with coverage
-      working-directory: src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests
-      run: dotnet test --collect:"XPlat Code Coverage" --settings coverlet.runsettings.xml --logger trx --no-build
-
-    - name: Install ReportGenerator
-      run: dotnet tool install --global dotnet-reportgenerator-globaltool
-
-    - name: Generate coverage report
-      run: |
-        COVERAGE_FILE=$(find . -name 'coverage.cobertura.xml' | head -1)
-        reportgenerator "-reports:$COVERAGE_FILE" "-targetdir:./coverage-report" "-reporttypes:Html;Badges"
-
-    - name: Upload coverage report
-      uses: actions/upload-artifact@v4
-      with:
-        name: coverage-report
-        path: ./coverage-report
-
-    - name: Display coverage summary
-      run: |
-        COVERAGE_FILE=$(find . -name 'coverage.cobertura.xml' | head -1)
-        echo "Coverage Summary:"
-        echo "----------------"
-        echo "Lines: $(grep -oP 'line-rate="\K[^"]+' $COVERAGE_FILE | head -1)"
-        echo "Branches: $(grep -oP 'branch-rate="\K[^"]+' $COVERAGE_FILE | head -1)"
+        dotnet test --no-build --logger trx
