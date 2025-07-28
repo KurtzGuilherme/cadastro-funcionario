@@ -34,5 +34,5 @@ jobs:
         filename: '**/coverage.cobertura.xml'
         badge: true
         fail_below_min: true
-        thresholds: 1 80
+        thresholds: 50 80
         format: markdown
