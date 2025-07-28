@@ -1,11 +1,13 @@
 name: Test and Coverage
 
-on: [push, pull_request]
+on:
+  pull_request:
+    branches: [ main ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v4
     
@@ -14,7 +16,23 @@ jobs:
       with:
         dotnet-version: '8.0.x'
         
-    - name: Run tests
-      working-directory: src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests
+    - name: Restore dependencies
+      run: dotnet restore ./src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.sln
+
+    - name: Verify runsettings exists
       run: |
-        dotnet test --no-build --logger trx
+        ls -la src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests/
+        cat src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests/coverlet.runsettings.xml
+      
+    - name: Run tests with coverage
+      working-directory: src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests
+      run: dotnet test --collect:"XPlat Code Coverage" --settings coverlet.runsettings.xml --logger trx
+
+    - name: Check coverage
+      uses: irongut/CodeCoverageSummary@v1.3.0 
+      with:
+        filename: '**/coverage.cobertura.xml'
+        badge: true
+        fail_below_min: true
+        minimum_coverage: 1 80
+        format: markdown
