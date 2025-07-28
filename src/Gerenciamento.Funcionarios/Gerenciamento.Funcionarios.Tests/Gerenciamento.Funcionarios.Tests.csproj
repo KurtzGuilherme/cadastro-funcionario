@@ -28,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="coverlet.runsettings.xml" CopyToOutputDirectory="PreserveNewest" />
     <ProjectReference Include="..\Gerenciamento.Funcionarios.Api\Gerenciamento.Funcionarios.Api.csproj" />
     <ProjectReference Include="..\Gerenciamento.Funcionarios.Aplicacao\Gerenciamento.Funcionarios.Aplicacao.csproj" />
     <ProjectReference Include="..\Gerenciamento.Funcionarios.Data\Gerenciamento.Funcionarios.Data.csproj" />

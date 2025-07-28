@@ -1,26 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<RunSettings>
-  <DataCollectionRunSettings>
-    <DataCollectors>
-      <DataCollector friendlyName="XPlat code coverage">
-        <Configuration>
-          <Format>cobertura</Format>
-          <Include>
-			      [Gerenciamento.Funcionarios.Api]*,			
-		      </Include>
-          <Exclude>
-            [Gerenciamento.Funcionarios.Tests]*,
-            [Gerenciamento.Funcionarios.CrossCutting]*,
-            [Gerenciamento.Funcionarios.Aplicacao]*,
-            [Gerenciamento.Funcionarios.Dominio]*,
-            [Gerenciamento.Funcionarios.Data]*,
-            [*.Test]*,
-            [xunit.*]*,
-            [Moq]*,
-            [Coverlet.*]*
-          </Exclude>
-        </Configuration>
-      </DataCollector>
-    </DataCollectors>
-  </DataCollectionRunSettings>
-</RunSettings>
+<CoverletRunSettings>
+  <!-- Define a cobertura mínima como 1% (apenas para o projeto Api) -->
+  <Threshold>1</Threshold>
+  <ThresholdType>line,branch,method</ThresholdType>
+
+  <!-- Inclui APENAS o projeto Api na verificação -->
+  <IncludeFilters>[*Gerenciamento.Funcionarios.Api*]</IncludeFilters>
+
+  <!-- Ignora todos os outros projetos -->
+  <ExcludeFilters>
+    [*Gerenciamento.Funcionarios.Dominio*],
+    [*Gerenciamento.Funcionarios.Data*],
+    [*Gerenciamento.Funcionarios.Aplicacao*],
+    [*Gerenciamento.Funcionarios.CrossCutting*]
+  </ExcludeFilters>
+</CoverletRunSettings>
