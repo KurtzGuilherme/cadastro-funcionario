@@ -6,10 +6,7 @@
         <Configuration>
           <Format>cobertura</Format>
           <Include>
-			[Gerenciamento.Funcionarios.Api]*,
-			[Gerenciamento.Funcionarios.Aplicacao]*,
-			[Gerenciamento.Funcionarios.Dominio]*,
-			[Gerenciamento.Funcionarios.Data]*,
+			[Gerenciamento.Funcionarios.Api]*
 		  </Include>
           <Exclude>
 			[Gerenciamento.Funcionarios.Tests]*,
