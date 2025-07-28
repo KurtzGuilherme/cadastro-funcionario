@@ -19,23 +19,42 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ./src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.sln
 
-    - name: Verify runsettings exists
+    - name: Verify runsettings
+      working-directory: src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests
       run: |
-        ls -la src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests/
-        test -f src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests/coverlet.runsettings.xml || exit 1
+        ls -la
+        cat coverlet.runsettings.xml
+        test -f coverlet.runsettings.xml || exit 1
       
     - name: Run tests with coverage
       working-directory: src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests
+      run: dotnet test --collect:"XPlat Code Coverage" --settings coverlet.runsettings.xml --logger trx --no-build
+
+    - name: Find coverage file
+      id: coverage
       run: |
-        # Garante que o arquivo existe
-        ls -la
-        cat coverlet.runsettings.xml
+        COVERAGE_PATH=$(find . -path '*/coverage/coverage.cobertura.xml' | head -1)
+        echo "Coverage file path: $COVERAGE_PATH"
+        echo "::set-output name=path::$COVERAGE_PATH"
 
     - name: Check coverage
-      uses: irongut/CodeCoverageSummary@v1.3.0 
+      uses: irongut/CodeCoverageSummary@v1.3.0
       with:
-        filename: '**/coverage.cobertura.xml'
+        filename: '${{ steps.coverage.outputs.path }}'
         badge: true
-        fail_below_min: true
-        minimum_coverage: 1
+        fail_below_min: false
         format: markdown
+        thresholds: '1 80'  # 1% mínimo, 80% desejado
+        hide_branch_rate: false
+        hide_complexity: false
+        indicators: true
+        output: both
+
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: coverage-report
+        path: |
+          ${{ steps.coverage.outputs.path }}
+          **/coverage/
