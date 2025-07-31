@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+
+    <!-- Configurações do Coverlet -->
+    <CollectCoverage>true</CollectCoverage>
+    <CoverletOutput>./coverage/</CoverletOutput>
+    <CoverletOutputFormat>cobertura,json</CoverletOutputFormat>
+    <CoverletMergeWith>./coverage/coverage.json</CoverletMergeWith>
+
+    <!-- Referência ao arquivo de configuração -->
+    <CoverletRunSettings>coverlet.runsettings.xml</CoverletRunSettings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="35.6.3" />
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="coverlet.msbuild" Version="6.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="Moq" Version="4.20.72" />
+    <PackageReference Include="Moq.AutoMock" Version="3.5.0" />
+    <PackageReference Include="xunit" Version="2.5.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="coverlet.runsettings.xml" CopyToOutputDirectory="PreserveNewest" />
+    <ProjectReference Include="..\Gerenciamento.Funcionarios.Api\Gerenciamento.Funcionarios.Api.csproj" />
+    <ProjectReference Include="..\Gerenciamento.Funcionarios.Aplicacao\Gerenciamento.Funcionarios.Aplicacao.csproj" />
+    <ProjectReference Include="..\Gerenciamento.Funcionarios.Data\Gerenciamento.Funcionarios.Data.csproj" />
+    <ProjectReference Include="..\Gerenciamento.Funcionarios.Dominio\Gerenciamento.Funcionarios.Dominio.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+</Project>

@@ -1,5 +1,4 @@
-﻿using Gerenciamento.Funcionarios.Aplicacao.Models;
-using Gerenciamento.Funcionarios.Aplicacao.Models.Requests;
+﻿using Gerenciamento.Funcionarios.Aplicacao.Models.Requests;
 using Gerenciamento.Funcionarios.Aplicacao.Models.Responses;
 using Gerenciamento.Funcionarios.Dominio.Entidades;
 
@@ -8,7 +7,7 @@ public static class EmpresaMapper
 {
     public static Empresa ToEmpresa(this EmpresaRequest request)
         => new Empresa(
-            request.Id, 
+            request.Id,
             request.Nome, 
             request.CNPJ, 
             request.Enderecos.Select(x => x.ToEndereco()));
@@ -19,12 +18,6 @@ public static class EmpresaMapper
            dominio.Nome,
            dominio.CNPJ,
            dominio.Enderecos.Select(x => x.ToEnderecoModel()));
-
-    public static Endereco ToEndereco(this EnderecoModel model)
-        => new Endereco(model.Rua, model.Cidade, model.Estado, model.CEP);
-
-    public static EnderecoModel ToEnderecoModel(this Endereco dominio)
-        => new EnderecoModel(dominio.Rua, dominio.Cidade, dominio.Estado, dominio.CEP);
 
     public static EmpresaRequest ToEmpresaRequest(this EmpresaResponse response)
       => new EmpresaRequest(

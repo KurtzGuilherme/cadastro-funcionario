@@ -17,9 +17,22 @@ public class EmpresaServico : IEmpresaServico
         _empresaRepositorio = empresaRepositorio;
     }
 
-    public async Task<EmpresaResponse> FindAsync(Guid id)
+    public async Task<EmpresaResponse?> FindByCnpjAsync(string cnpj)
+    {
+        var empresa = await _empresaRepositorio.FindByCnpjAsync(cnpj);
+
+        if (empresa == null)
+            return null;
+
+        return empresa.ToEmpresaResponse();
+    }
+
+    public async Task<EmpresaResponse?> FindAsync(Guid id)
     {
         var empresaDominio = await _empresaRepositorio.FindOneAsync(id);
+
+        if (empresaDominio == null)
+            return null;
 
         return empresaDominio.ToEmpresaResponse();
     }
@@ -27,24 +40,24 @@ public class EmpresaServico : IEmpresaServico
     public async Task AddAsync(EmpresaRequest empresa)
     {
         var empresaDominio = empresa.ToEmpresa();
+
+        
+
         await _empresaRepositorio.AddOneAsync(empresaDominio);
     }
 
     public async Task DeleteAsync(Guid id)
     {
-        var filter = new FilterDefinitionBuilder<Empresa>()
-            .Where(x => x.Id == id);
-
-        await _empresaRepositorio.DeleteAsync(_ => filter.Inject());
+        await _empresaRepositorio.DeleteByIdAsync(id);
     }
 
-    public async Task UpdateAsync(EmpresaRequest empresa)
+    public async Task UpdateAsync(EmpresaRequest request)
     {
         var filter = new FilterDefinitionBuilder<Empresa>()
-           .Where(x => x.Id == empresa.Id);
+           .Where(x => x.CNPJ == request.CNPJ);
 
-        var empresaDominio = empresa.ToEmpresa();
+        var empresaDominio = request.ToEmpresa();
 
         await _empresaRepositorio.ReplaceOneAsync(_ => filter.Inject(), empresaDominio);
-    }
+    }   
 }

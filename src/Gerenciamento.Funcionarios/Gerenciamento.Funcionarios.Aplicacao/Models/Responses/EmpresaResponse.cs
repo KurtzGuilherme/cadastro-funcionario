@@ -13,4 +13,9 @@ public class EmpresaResponse
         CNPJ = cnpj;
         Enderecos = enderecos;
     }
+
+    public EmpresaResponse()
+    {
+            
+    }
 }

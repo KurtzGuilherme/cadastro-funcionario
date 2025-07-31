@@ -1,8 +1,5 @@
 ﻿using Gerenciamento.Funcionarios.Aplicacao.Interfaces;
 using Gerenciamento.Funcionarios.Aplicacao.Models.Requests;
-using Gerenciamento.Funcionarios.Aplicacao.Models.Responses;
-using Gerenciamento.Funcionarios.Aplicacao.Mappers;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Gerenciamento.Funcionarios.Api.Controllers;
@@ -26,6 +23,9 @@ public class EmpresaController : Controller
     public async Task<IActionResult> GetEmpresa([FromQuery] Guid Id)
     {
         var empresaResponse = await _empresaServico.FindAsync(Id);
+
+        if(empresaResponse == null)
+           return NoContent();
 
         return Ok(empresaResponse);
     }
@@ -60,14 +60,9 @@ public class EmpresaController : Controller
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> UpdateEmpresa(Guid Id, JsonPatchDocument<EmpresaResponse> request)
+    public async Task<IActionResult> UpdateEmpresa(Guid Id, EmpresaRequest request)
     {
-        var empresa = await _empresaServico.FindAsync(Id);
-
-        request
-            .ApplyTo(empresa);
-
-        await _empresaServico.UpdateAsync(empresa.ToEmpresaRequest());
+        await _empresaServico.UpdateAsync(request);
 
         return Accepted();
     }

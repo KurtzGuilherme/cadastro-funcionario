@@ -6,10 +6,6 @@ public class AddEmpresaValidacao : AbstractValidator<EmpresaRequest>
 {
     public AddEmpresaValidacao()
     {
-        RuleFor(x => x.Id)
-            .NotEmpty()
-            .WithMessage("O id não pode ser vazio!!!");
-
         RuleFor(x => x.Nome)
             .NotNull()
             .NotEmpty()

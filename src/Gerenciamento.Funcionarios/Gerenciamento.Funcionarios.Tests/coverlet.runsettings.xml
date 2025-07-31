@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat code coverage">
+        <Configuration>
+          <!-- Configurações básicas -->
+          <Format>cobertura</Format>
+          <IncludeTestAssembly>false</IncludeTestAssembly>
+
+          <!-- Threshold mínimo (1% apenas para o projeto Api) -->
+          <Threshold>1</Threshold>
+          <ThresholdType>line,branch,method</ThresholdType>
+          <ThresholdStat>total</ThresholdStat>
+
+          <!-- Inclui APENAS o projeto Api -->
+          <Include>[Gerenciamento.Funcionarios.Api]*</Include>
+
+          <!-- Exclusão explícita do CrossCutting e outros projetos -->
+          <Exclude>[Gerenciamento.Funcionarios.CrossCutting]*</Exclude>
+          <Exclude>[Gerenciamento.Funcionarios.Dominio]*</Exclude>
+          <Exclude>[Gerenciamento.Funcionarios.Data]*</Exclude>
+          <Exclude>[Gerenciamento.Funcionarios.Aplicacao]*</Exclude>
+
+          <!-- Exclui pacotes de teste e dependências -->
+          <Exclude>[xunit.*]*</Exclude>
+          <Exclude>[Moq]*</Exclude>
+          <Exclude>[coverlet.*]*</Exclude>
+
+          <!-- Configurações de arquivo -->
+          <ExcludeByFile>**/Migrations/*.cs</ExcludeByFile>
+          <ExcludeByFile>**/obj/**/*.cs</ExcludeByFile>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+
+  <!-- Configurações do teste -->
+  <RunConfiguration>
+    <ResultsDirectory>./TestResults/</ResultsDirectory>
+    <CollectSourceInformation>true</CollectSourceInformation>
+  </RunConfiguration>
+</RunSettings>

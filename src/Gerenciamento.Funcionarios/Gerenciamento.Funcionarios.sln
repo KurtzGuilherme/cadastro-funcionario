@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gerenciamento.Funcionarios.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gerenciamento.Funcionarios.Api", "Gerenciamento.Funcionarios.Api\Gerenciamento.Funcionarios.Api.csproj", "{A148C93F-A162-4DCA-B641-FAF3AD4B7062}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gerenciamento.Funcionarios.Tests", "Gerenciamento.Funcionarios.Tests\Gerenciamento.Funcionarios.Tests.csproj", "{97FA642C-2D42-43CF-BBFB-DB52A02260C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A148C93F-A162-4DCA-B641-FAF3AD4B7062}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A148C93F-A162-4DCA-B641-FAF3AD4B7062}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A148C93F-A162-4DCA-B641-FAF3AD4B7062}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97FA642C-2D42-43CF-BBFB-DB52A02260C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97FA642C-2D42-43CF-BBFB-DB52A02260C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97FA642C-2D42-43CF-BBFB-DB52A02260C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97FA642C-2D42-43CF-BBFB-DB52A02260C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
