@@ -17,15 +17,15 @@ jobs:
         dotnet-version: '8.0.x'
         
     - name: Restore dependencies
-      run: dotnet restore ./src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.sln
+      run: dotnet restore ./src/Gerenciamento.Funcionarios.sln
 
     - name: Verify runsettings exists
       run: |
-        ls -la src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests/
-        cat src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests/coverlet.runsettings.xml
+        ls -la src/Gerenciamento.Funcionarios.Tests/
+        cat src/Gerenciamento.Funcionarios.Tests/coverlet.runsettings.xml
       
     - name: Run tests with coverage
-      working-directory: src/Gerenciamento.Funcionarios/Gerenciamento.Funcionarios.Tests
+      working-directory: src/Gerenciamento.Funcionarios.Tests
       run: dotnet test --collect:"XPlat Code Coverage" --settings coverlet.runsettings.xml --logger trx
 
     - name: Check coverage
