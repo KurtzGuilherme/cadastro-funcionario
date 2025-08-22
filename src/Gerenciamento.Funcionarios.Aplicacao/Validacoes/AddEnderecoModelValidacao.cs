@@ -9,21 +9,21 @@ public class AddEnderecoModelValidacao : AbstractValidator<EnderecoModel>
         RuleFor(x => x.Estado)
             .NotNull()
             .NotEmpty()
-            .WithMessage("O Estado não pode ser vazio ou nulo!!!");
+            .WithMessage("O Estado não pode ser vazio ou nulo.");
 
         RuleFor(x => x.CEP)
             .NotNull()
             .NotEmpty()
-            .WithMessage("O CEP não pode ser vazio ou nulo!!!");
+            .WithMessage("O CEP não pode ser vazio ou nulo.");
 
         RuleFor(x => x.Rua)
             .NotNull()
             .NotEmpty()
-            .WithMessage("O Rua não pode ser vazio ou nulo!!!");
+            .WithMessage("O Rua não pode ser vazio ou nulo.");
 
         RuleFor(x => x.Cidade)
            .NotNull()
            .NotEmpty()
-           .WithMessage("O Cidade não pode ser vazio ou nulo!!!");
+           .WithMessage("O Cidade não pode ser vazio ou nulo.");
     }
 }

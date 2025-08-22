@@ -41,8 +41,6 @@ public class EmpresaServico : IEmpresaServico
     {
         var empresaDominio = empresa.ToEmpresa();
 
-        
-
         await _empresaRepositorio.AddOneAsync(empresaDominio);
     }
 

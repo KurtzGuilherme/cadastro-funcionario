@@ -47,6 +47,7 @@ public class Funcionario
         string email,
         DateTime dataNascimento,
         string telefone,
+        Guid empresaId,
         string cargo,
         DateTime dataContratacao,
         DateTime? dataDesligamento,
@@ -59,6 +60,7 @@ public class Funcionario
         Email = email;
         DataNascimento = dataNascimento;
         Telefone = telefone;
+        EmpresaId = empresaId;
         Cargo = cargo;
         DataContratacao = dataContratacao;
         DataDesligamento = dataDesligamento;

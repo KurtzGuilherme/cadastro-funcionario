@@ -25,6 +25,7 @@ public class FuncionarioResponse
         string email,
         DateTime dataNascimento,
         string telefone,
+        Guid empresaId,
         string cargo,
         DateTime dataContratacao,
         DateTime? dataDesligamento,
@@ -37,6 +38,7 @@ public class FuncionarioResponse
         Email = email;
         DataNascimento = dataNascimento;
         Telefone = telefone;
+        EmpresaId = empresaId;
         Cargo = cargo;
         DataContratacao = dataContratacao;
         DataDesligamento = dataDesligamento;

@@ -1,8 +1,10 @@
+using Gerenciamento.Funcionarios.CrossCutting.Middleware;
 using Gerenciamento.Funcionarios.CrossCutting.Model;
 using Gerenciamento.Funcionarios.CrossCutting.Mongo;
 using Gerenciamento.Funcionarios.CrossCutting.Repositorios;
 using Gerenciamento.Funcionarios.CrossCutting.Servicos;
 using Gerenciamento.Funcionarios.CrossCutting.Validacoes;
+using Gerenciamento.Funcionarios.CrossCutting.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,15 +16,18 @@ builder.Services.AddControllers();
 
 builder.Services
     .AddRepositorios()
+    .AddServicos()
+    .AddMongo(applicationSettings!.MongoSettings!)
+    .AddAuthenticationJwt(applicationSettings!.AuthenticationSettings!)
+    .AddValidacao()
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
-    .AddMongo(applicationSettings!.MongoSettings!)
-    .AddValidacao()
-    .AddServicos()
     .AddControllers(o => o.Filters.Add(typeof(ActionValidationAttribute)))
     .AddNewtonsoftJson();
 
 var app = builder.Build();
+
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

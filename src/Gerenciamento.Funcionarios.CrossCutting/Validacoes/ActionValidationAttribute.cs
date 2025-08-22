@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System.Net;
 
 namespace Gerenciamento.Funcionarios.CrossCutting.Validacoes;
 public class ActionValidationAttribute : ActionFilterAttribute
@@ -15,12 +16,12 @@ public class ActionValidationAttribute : ActionFilterAttribute
 
             context.Result = new JsonResult(new
             {
-                Code = 400,
+                Code = HttpStatusCode.BadRequest,
                 Message = "Um ou mais erros ocorreram.",
                 Erros = erros
             })
             {
-                StatusCode = 400
+                StatusCode = (int)HttpStatusCode.BadRequest
             };
         }
     }

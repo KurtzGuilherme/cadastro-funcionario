@@ -1,5 +1,4 @@
-﻿using Gerenciamento.Funcionarios.Dominio.Entidades;
-using Gerenciamento.Funcionarios.Dominio.Interfaces;
+﻿using Gerenciamento.Funcionarios.Dominio.Interfaces;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using System.Linq.Expressions;
