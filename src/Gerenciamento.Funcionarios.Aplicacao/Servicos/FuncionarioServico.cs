@@ -2,7 +2,6 @@
 using Gerenciamento.Funcionarios.Aplicacao.Mappers;
 using Gerenciamento.Funcionarios.Aplicacao.Models.Requests;
 using Gerenciamento.Funcionarios.Aplicacao.Models.Responses;
-using Gerenciamento.Funcionarios.Data.Repositorios;
 using Gerenciamento.Funcionarios.Dominio.Entidades;
 using Gerenciamento.Funcionarios.Dominio.Interfaces;
 using MongoDB.Driver;

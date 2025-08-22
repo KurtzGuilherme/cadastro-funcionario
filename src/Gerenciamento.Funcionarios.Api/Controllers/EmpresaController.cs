@@ -56,11 +56,11 @@ public class EmpresaController : Controller
     }
 
     [HttpPatch]
-    [Route("updateEmpresa/{Id:guid}", Name = nameof(UpdateEmpresa))]
+    [Route("updateEmpresa", Name = nameof(UpdateEmpresa))]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> UpdateEmpresa(Guid Id, EmpresaRequest request)
+    public async Task<IActionResult> UpdateEmpresa(EmpresaRequest request)
     {
         await _empresaServico.UpdateAsync(request);
 

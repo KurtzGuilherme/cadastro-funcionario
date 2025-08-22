@@ -14,6 +14,7 @@ public static class ValidacaoExtensions
 
         services.AddScoped<IValidator<EmpresaRequest>, AddEmpresaValidacao>();
         services.AddScoped<IValidator<EnderecoModel>, AddEnderecoModelValidacao>();
+        services.AddScoped<IValidator<UsuarioRequest>, AddUsuarioValidacao>();
 
         return services;
     }
